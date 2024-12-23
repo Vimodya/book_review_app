@@ -1,8 +1,8 @@
 import Navbar from "@/components/NavBar";
-import ImageSlider from "./home/components/ImageSlider";
+import ImageSlider from "./components/ImageSlider";
 import ReviewCard from "@/components/ReviewCard";
 
-export default function Home() {
+export default function page() {
   return (
     <div>
       <Navbar />
