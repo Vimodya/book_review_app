@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 
 export default function ImageSlider() {
-  const images = ["/images/1.jpg", "/images/2.jpg", "/images/3.jpg"];
+  const images = ["/images/5.avif", "/images/2.jpg", "/images/4.jpg"];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
