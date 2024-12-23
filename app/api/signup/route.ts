@@ -14,10 +14,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Ensure MongoDB connection is established
     await connectMongoDB();
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
@@ -26,10 +24,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Save the user
     const newUser = new User({
       firstName,
       lastName,

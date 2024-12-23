@@ -4,9 +4,8 @@ import { useRouter } from "next/navigation";
 
 export default function Signup() {
   const [isLogin, setIsLogin] = useState(false);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
-  // Handle signup
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -40,7 +39,6 @@ export default function Signup() {
     }
   };
 
-  // Handle login
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -64,9 +62,8 @@ export default function Signup() {
       alert(result.message);
 
       if (response.ok) {
-        // Store first name and token (if available) in localStorage
-        localStorage.setItem("profileName", result.firstName); // Store the profile name
-        router.push("/home"); // Redirect to the home page after successful login
+        localStorage.setItem("profileName", result.firstName);
+        router.push("/home");
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -76,7 +73,6 @@ export default function Signup() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="grid grid-cols-2 gap-0 w-[900px] h-[500px] bg-white border border-gray-300 rounded-md">
-        {/* Left Section */}
         <div className="flex flex-col items-center justify-center bg-gray-50 px-8 py-4">
           <h1 className="text-xl font-semibold text-center">
             Make things easier with an official account
@@ -93,7 +89,6 @@ export default function Signup() {
           <p className="mt-8 text-green-600 font-medium">Join with us Now</p>
         </div>
 
-        {/* Right Section */}
         <div className="flex flex-col items-center justify-center px-8 py-4">
           <div className="flex mb-6">
             <button
@@ -118,7 +113,6 @@ export default function Signup() {
             </button>
           </div>
 
-          {/* Form Section */}
           {isLogin ? (
             <form className="w-full space-y-4" onSubmit={handleLogin}>
               <input

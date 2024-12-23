@@ -12,7 +12,6 @@ export default function ImageSlider() {
   const images = ["/images/1.jpg", "/images/2.jpg", "/images/3.jpg"];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-change images every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
@@ -38,7 +37,6 @@ export default function ImageSlider() {
   return (
     <div className="relative w-full h-full">
       <Carousel className="w-full h-full">
-        {/* Image Container */}
         <CarouselContent
           className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -58,7 +56,6 @@ export default function ImageSlider() {
           ))}
         </CarouselContent>
 
-        {/* Navigation Buttons */}
         <button
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black text-white p-2 rounded-full z-10"
           onClick={handlePrevious}
