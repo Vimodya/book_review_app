@@ -1,21 +1,31 @@
 "use client";
 import Image from "next/image";
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FiUser, FiBox, FiHeart, FiLogOut } from "react-icons/fi";
 import SearchBar from "./SearchBar";
 
 const Navbar: FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [profileName, setProfileName] = useState<string | null>("");
 
+  // Toggle dropdown menu
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // Fetch profile name from localStorage or global state
+  useEffect(() => {
+    const name = localStorage.getItem("profileName"); // Retrieve from localStorage
+    if (name) {
+      setProfileName(name); // Set the profile name if it exists in localStorage
+    }
+  }, []);
+
   return (
     <div>
-      <div className="bg-[#F4F4F9] shadow-md py-4 w-screen ">
-        <div className="flex items-center ">
+      <div className="bg-[#F4F4F9] shadow-md py-4 w-screen">
+        <div className="flex items-center">
           <div className="flex items-center w-3/5 justify-between">
             {" "}
             <div className="flex items-center ms-12 ">
@@ -41,16 +51,9 @@ const Navbar: FC = () => {
                 className="flex items-center cursor-pointer  "
                 onClick={toggleDropdown}
               >
-                <Image
-                  src="/images/chamodi.jpg"
-                  alt="Chamodi Liyanage"
-                  width={20}
-                  height={20}
-                  className="rounded-full w-10 h-10 object-cover"
-                />
                 <div className="ml-4">
                   <h2 className="text-sm font-medium text-[#1A202C]">
-                    Chamodi Liyanage
+                    {profileName ? profileName : "Profile"}
                   </h2>
                 </div>
                 <MdKeyboardArrowDown
@@ -66,7 +69,7 @@ const Navbar: FC = () => {
                 >
                   <div className="text-center mb-4 flex flex-col items-center  justify-center">
                     <h2 className="text-sm text-[#F4F4F9] font-bold text-center">
-                      Hi Chamodi ❤️
+                      Hi {profileName ? profileName : "Profile"} ❤️
                     </h2>
                   </div>
                   <div className="border-t border-white my-2 w-48"></div>

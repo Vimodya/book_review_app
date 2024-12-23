@@ -3,7 +3,6 @@
 export default function AddReview() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-50 p-4">
-      {/* Header */}
       <div className="flex justify-between items-center w-full max-w-4xl border-b pb-2 mb-8">
         <button className="text-[#a58a72] text-lg font-medium">
           &larr; Back
@@ -12,10 +11,8 @@ export default function AddReview() {
         <button className="text-red-500 text-lg font-medium">Cancel</button>
       </div>
 
-      {/* Form Container */}
       <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6">
         <form className="space-y-6">
-          {/* Cover Image URL */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
               Cover Image (URL)
@@ -27,7 +24,6 @@ export default function AddReview() {
             />
           </div>
 
-          {/* Book Title */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
               Book Title
@@ -39,7 +35,6 @@ export default function AddReview() {
             />
           </div>
 
-          {/* ISBN Number */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
               ISBN Number
@@ -51,7 +46,6 @@ export default function AddReview() {
             />
           </div>
 
-          {/* Author Name */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
               Author Name
@@ -63,7 +57,6 @@ export default function AddReview() {
             />
           </div>
 
-          {/* Book Description */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
               Review about the Book
