@@ -4,10 +4,12 @@ import { useState, FC, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FiUser, FiBox, FiHeart, FiLogOut } from "react-icons/fi";
 import SearchBar from "./SearchBar";
+import Link from "next/link";
 
 const Navbar: FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [profileName, setProfileName] = useState<string | null>("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Toggle dropdown menu
   const toggleDropdown = () => {
@@ -22,29 +24,33 @@ const Navbar: FC = () => {
     }
   }, []);
 
+  // Handle search query change
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    // You can use this query to filter items in your parent component (e.g., books, reviews, etc.)
+  };
+
   return (
     <div>
       <div className="bg-[#F4F4F9] shadow-md py-4 w-screen">
         <div className="flex items-center">
           <div className="flex items-center w-3/5 justify-between">
-            {" "}
             <div className="flex items-center ms-12 ">
               <Image
-                src="/images/chamodi.jpg"
-                alt="Freshmart Logo"
+                src="/images/3.png"
+                alt="Logo"
                 width={150}
                 height={150}
                 className="cursor-pointer w-12 h-12"
               />
             </div>
-            <div className="ms-12 ">
-              <SearchBar />
-            </div>
           </div>
           <div className="flex w-2/5 justify-around items-center">
-            <div className="text-[#1A202C] font-medium text-sm">Wishlist</div>
+            <div className="text-[#1A202C] font-medium text-sm">
+              <Link href="/addReview">Post a Review</Link>
+            </div>
 
-            <div className="text-sm font-medium text-[#1A202C]">My Cart</div>
+            <div className="text-sm font-medium text-[#1A202C]">Popular</div>
 
             <div className="relative ">
               <div

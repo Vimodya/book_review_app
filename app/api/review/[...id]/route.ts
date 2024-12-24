@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import connectMongoDB from "../../../lib/mongo/mongodb";
-import Review from "../../../models/review";
+import connectMongoDB from "../../../../lib/mongo/mongodb";
+import Review from "../../../../models/review";
 
 export async function POST(req: NextRequest) {
   const { coverImage, title, isbn, author, description, rating } =

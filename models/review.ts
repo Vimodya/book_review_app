@@ -6,6 +6,7 @@ const reviewSchema = new mongoose.Schema({
   isbn: { type: String, required: true },
   author: { type: String, required: true },
   description: { type: String, required: true },
+  rating: { type: Number, required: true, min: 1, max: 5 },
 });
 
 const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);

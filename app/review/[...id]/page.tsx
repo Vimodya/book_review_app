@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function PostDetail() {
   const { id } = useParams();
+  const { data: session } = useSession();
   const [post, setPost] = useState<{
     coverImage: string;
     title: string;
@@ -13,6 +15,24 @@ export default function PostDetail() {
     comments?: { id: string; text: string; author: string; time: string }[];
   } | null>(null);
   const [newComment, setNewComment] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  useEffect(() => {
+    if (session?.user?.email) {
+      const fetchUserName = async () => {
+        try {
+          const response = await fetch(
+            `/api/getUserName?email=${session?.user?.email}`
+          );
+          const data = await response.json();
+          setAuthorName(`${data.firstName} ${data.lastName}`);
+        } catch (error) {
+          console.error("Error fetching user name:", error);
+        }
+      };
+
+      fetchUserName();
+    }
+  }, [session]);
 
   useEffect(() => {
     const fetchPostDetails = async () => {
@@ -48,7 +68,7 @@ export default function PostDetail() {
     const newCommentData = {
       id: Math.random().toString(36).substr(2, 9),
       text: newComment,
-      author: "New User",
+      author: authorName || "New User",
       time: "Just now",
     };
 
@@ -84,7 +104,7 @@ export default function PostDetail() {
     <div className="flex flex-row w-full min-h-screen p-4">
       <div className="w-1/2 pr-4">
         <div className="flex items-center justify-between border-b pb-2 mb-4">
-          <button className="text-blue-500">&larr; Back</button>
+          <button className="text-[#a58a72]">&larr; Back</button>
           <h1 className="font-semibold text-lg">Post Detail</h1>
           <div></div>
         </div>
@@ -102,7 +122,7 @@ export default function PostDetail() {
           <div className="flex justify-between items-center text-sm text-gray-500 mt-2">
             <span>{post.author}</span>
             <span>{post.submitted}</span>
-            <button className="text-blue-500">
+            <button className="text-[#a58a72]">
               {post.comments ? post.comments.length : 0} Comments
             </button>
           </div>
@@ -116,11 +136,11 @@ export default function PostDetail() {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Add a comment..."
-            className="flex-1 border rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 border rounded-l-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#a58a72]"
           />
           <button
             onClick={handleAddComment}
-            className="bg-blue-500 text-white px-4 py-2 rounded-r-md"
+            className="bg-[#a58a72] text-white px-4 py-2 rounded-r-md"
           >
             Post
           </button>

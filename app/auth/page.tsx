@@ -77,16 +77,16 @@ export default function Signup() {
           <h1 className="text-xl font-semibold text-center">
             Make things easier with an official account
           </h1>
-          <h2 className="mt-4 text-2xl font-bold text-green-600">
-            Welcome to NovaCart
+          <h2 className="mt-4 text-2xl font-bold text-[#a58a72]">
+            Welcome to BookReview
           </h2>
           <ul className="mt-6 space-y-2 text-sm text-gray-600">
-            <li>✔ Check out faster with saved info</li>
-            <li>✔ Enjoy our personalized journey</li>
-            <li>✔ Keep your orders on track</li>
-            <li>✔ Get loyalty discounts</li>
+            <li>✔ Add comment on reviews</li>
+            <li>✔ Search your favorites</li>
+            <li>✔ Keep your journey smooth</li>
+            <li>✔ Get an official Acoount</li>
           </ul>
-          <p className="mt-8 text-green-600 font-medium">Join with us Now</p>
+          <p className="mt-8 text-[#a58a72] font-medium">Join with us Now</p>
         </div>
 
         <div className="flex flex-col items-center justify-center px-8 py-4">
@@ -119,13 +119,13 @@ export default function Signup() {
                 name="email"
                 type="email"
                 placeholder="Your email address"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#a58a72] focus:outline-none"
               />
               <input
                 name="password"
                 type="password"
                 placeholder="Password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#a58a72] focus:outline-none"
               />
               <button
                 type="submit"
@@ -140,25 +140,25 @@ export default function Signup() {
                 name="firstName"
                 type="text"
                 placeholder="First Name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#a58a72] focus:outline-none"
               />
               <input
                 name="lastName"
                 type="text"
                 placeholder="Last Name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#a58a72] focus:outline-none"
               />
               <input
                 name="email"
                 type="email"
                 placeholder="Your email"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring--500 focus:outline-none"
               />
               <input
                 name="password"
                 type="password"
                 placeholder="Password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#a58a72] focus:outline-none"
               />
               <button
                 type="submit"

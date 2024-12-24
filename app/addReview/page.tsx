@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AddReview() {
   const [coverImage, setCoverImage] = useState("");
@@ -9,6 +10,9 @@ export default function AddReview() {
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [imagePreview, setImagePreview] = useState("");
+  const [rating, setRating] = useState<number>(0);
+
+  const router = useRouter(); // Initialize the router
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -17,7 +21,6 @@ export default function AddReview() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
-
         uploadImage(reader.result as string);
       };
       reader.readAsDataURL(file);
@@ -50,6 +53,7 @@ export default function AddReview() {
       isbn,
       author,
       description,
+      rating,
     };
 
     try {
@@ -60,13 +64,22 @@ export default function AddReview() {
         },
         body: JSON.stringify(formData),
       });
-
       const result = await response.json();
-      alert(result.message);
+
+      if (response.ok) {
+        router.push("/home");
+        alert(result.message);
+      } else {
+        alert(result.message || "Failed to submit review.");
+      }
     } catch (error) {
       console.error("Error submitting review:", error);
       alert("Failed to submit review.");
     }
+  };
+
+  const handleRating = (index: number) => {
+    setRating(index + 1);
   };
 
   return (
@@ -88,7 +101,7 @@ export default function AddReview() {
             <input
               type="file"
               onChange={handleImageChange}
-              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#a58a72]"
             />
             {imagePreview && (
               <div className="mt-4">
@@ -110,7 +123,7 @@ export default function AddReview() {
               placeholder="Book Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#a58a72]"
             />
           </div>
 
@@ -123,7 +136,7 @@ export default function AddReview() {
               placeholder="ISBN Number"
               value={isbn}
               onChange={(e) => setIsbn(e.target.value)}
-              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#a58a72]"
             />
           </div>
 
@@ -136,7 +149,7 @@ export default function AddReview() {
               placeholder="Book Author"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
-              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#a58a72]"
             />
           </div>
 
@@ -148,16 +161,35 @@ export default function AddReview() {
               placeholder="Book Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#a58a72]"
               rows={4}
             ></textarea>
+          </div>
+
+          {/* Star Rating Section */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">
+              Rating
+            </label>
+            <div className="flex space-x-1">
+              {[1, 2, 3, 4, 5].map((starIndex) => (
+                <span
+                  key={starIndex}
+                  onClick={() => handleRating(starIndex - 1)}
+                  className={`cursor-pointer text-2xl ${
+                    starIndex <= rating ? "text-yellow-400" : "text-gray-300"
+                  }`}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="flex justify-end">
             <button
               type="submit"
               className="bg-[#a58a72] text-white font-medium py-3 px-6 rounded-lg hover:bg-[#52311b] transition"
-              onClick={handleSubmit}
             >
               Post Review
             </button>
